@@ -7,11 +7,14 @@
     border: 5px solid red;
 }
 .news_img{
-    width: 300px;
+    width: 500px;
 }
 .index_content{
     display:grid;
-    grid-gap: auto;
-    padding: 10px;
     grid-template-columns: repeat(3,1fr);
+}
+
+
+input{
+    position: absolute;
 }
