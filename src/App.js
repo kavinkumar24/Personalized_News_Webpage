@@ -17,17 +17,25 @@ import Articles from './Components/Articles';
 import Tesla from './Components/Tesla';
 import Apple from './Components/Apple';
 import US from './Components/US';
+import Login from './Components/Login';
+import Logout from './Components/Logout';
+import UserDropdown from './Components/UserDropdown';
+
 function App() {
   const [input,setInput] = useState("")
-
+  const [email, setEmail] = useState('');
+  const [data, setData] = useState(null);
   return (
     <div className="App">
 
     <Home />
 
 
+    
     <Routes>
-        <Route path="/" element={<NewsList />} />
+        <Route path="/" element={<Login setData={setData}/>} />
+
+        <Route path="/home" element={<NewsList data={data} />} />
         <Route path="/business" element={<Business />} />
         <Route path="/sports" element={<Sports />} />
         <Route path="/technology" element={<Tech />} />
@@ -35,13 +43,14 @@ function App() {
         <Route path="/science" element={<Science />} />
         <Route path="/tesla" element={<Tesla />} />
         <Route path="/apple" element={<Apple />} />
-        <Route path="/newspaper" element={<NewsList1 />} />
+        <Route path="/home/newspaper" element={<NewsList1 />} />
         <Route path="/articles" element={<Articles />} />
         <Route path="/usBusiness" element={<US />} />
         <Route path="/business/newspaper1" element={<NewsList2 />} />
 
         
       </Routes>
+
      
     </div>
   );

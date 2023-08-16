@@ -4,6 +4,7 @@ import NewsItem from './NewsItem';
 import NewsItem2 from './NewsItem2';
 import './NewsList.css';
 import DownloadPage from './Downloadpage';
+
 const NewsList = () => {
     const [articles, setArticles] = useState([]);
     const [articles2, setArticles2] = useState([]);
@@ -74,11 +75,20 @@ const NewsList = () => {
                     </div>
                 </div>
             </div>
-        </div>
-  
-        
+
+            {/* add styles here */}
+            <style>
+                {`
+                    .headline.hl3 {
+                        font-size: 24px;
+                    }
+                    p {
+                        font-size: 18px;
+                    }
+                `}
+            </style>
+        </div>  
     )
 }
 
 export default NewsList;
-

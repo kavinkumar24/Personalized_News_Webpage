@@ -78,7 +78,7 @@ function US() {
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0 brand" navbarScroll>
             <Link id='color'
-              to="/"
+              to="/home"
               className="nav-link"
               onClick={() => setExpanded(false)}
             >
