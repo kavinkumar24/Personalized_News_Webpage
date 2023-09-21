@@ -7,12 +7,19 @@ import { BrowserRouter } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+// import Kommunicate from "@kommunicate/kommunicate-chatbot-plugin";
+
+// Kommunicate.init("14ac24519e9821a1f95b8904c9b8c3053", {
+//   automaticChatOpenOnNavigation: true,
+//   popupWidget: true
+// });   chat bot- kcommnicate
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
     <App />
+    
     </BrowserRouter>
   </React.StrictMode>
 );

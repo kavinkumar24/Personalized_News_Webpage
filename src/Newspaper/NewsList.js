@@ -11,7 +11,7 @@ const NewsList = () => {
 
     useEffect(() => {
         const getArticles = async () => {
-            const response = await axios.get(`https://newsapi.org/v2/everything?domains=wsj.com&apiKey=32c33fd4552f42f4ba91b6f2af82185c`)
+            const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=in&apiKey=e0871c37702a45e8a0f5a2f8c1d71e6d`)
             setArticles(response.data.articles)
             console.log(response)
             const response2 = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=401d5f2b3147428098515e9781afb3cb`)
@@ -30,7 +30,7 @@ const NewsList = () => {
             <meta name="viewport" content="width=device-width" />
             <div className="head">
                 <div className="headerobjectswrapper">
-                    <header>Newsh</header>
+                    <header>NEWSILE</header>
                 </div>
                 <div className="subhead">
                 <DownloadPage 

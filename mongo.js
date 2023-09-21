@@ -11,6 +11,8 @@ mongoose.connect("mongodb://127.0.0.1:27017/NewsDB",{
 })
 
 const newSchema = new mongoose.Schema({
+
+    loginCount: { type: Number, default: 0 },
     name:{
         type:String,
         required:true
@@ -31,14 +33,28 @@ const newSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    role:{
-        type:String,
-        required:true
-    },
+    
     age:{
         type:Number,
         required:true
-    }
+    },
+    selectedBrands:{
+        type:[String],
+        required:true
+    },
+
+    
+        
+          title: {
+            type: [String],
+            required: true
+          },
+        //   description: {
+        //     type: String,
+        //     required: true
+        //   }
+        
+      
     // date:{
     //     type:Date,
     //     required:true,

@@ -12,6 +12,9 @@ import { useNavigate, Link } from "react-router-dom"
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Chatbot from './Chatbot';
+import { auto } from '@popperjs/core';
+import logo from '../Components/Images/newsile_logo.png'
 
 export default function Login({setData}) {
     const [signIn, toggle] = React.useState(true);
@@ -20,10 +23,106 @@ export default function Login({setData}) {
     const[password,setPassword] = useState('');
     const[mobile,setMobile] = useState('');
     const[gender,setGender] = useState('');
-    const[role,setRole] = useState('');
-
+    const [show, setShow] = useState(false);
+    const [showSpinner, setShowSpinner] = useState(false);
   const history = useNavigate();
 
+  const BRANDS = [
+    {
+      name: 'Business',
+      slug: 'business',
+    },
+    {
+      name: 'Science',
+      slug: 'Science',
+    },
+    {
+      name: 'Sports',
+      slug: 'Sports',
+    },
+    {
+      name: 'Health',
+      slug: 'Health',
+    },
+    {
+      name: 'Techno',
+      slug: 'Techno',
+    },
+    {
+      name: 'Articles',
+      slug: 'Articles',
+    },
+    {
+      name: 'Entertainment',
+      slug: 'Entertainment',
+    },
+   
+  ];
+  const [brands, setBrands] = useState(BRANDS);
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const renderBrands = ({ name, slug }) => {
+    const isSelected = selectedBrands.includes(slug);
+
+    return (
+      <div
+        onClick={() => {
+          if (isSelected) {
+            setSelectedBrands((prev) => prev.filter((i) => i !== slug));
+          } else {
+            setSelectedBrands((prev) => [...prev, slug]);
+          }
+        }}
+        style={{
+          display: 'inline-block',
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginTop:'10px !important',
+          cursor:'pointer',
+          border: '1px solid lightgrey',
+          margin: '5px',
+          width: auto,
+          borderRadius: '19px',
+          height: '30px',
+          padding: '10px', 
+          paddingBottom:'30px',
+          transition: 'background-color 0.3s',
+          
+          backgroundColor: isSelected ? '#d2fae9' : 'transparent',
+          color: isSelected ? 'black' : 'black',
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'scale(1.1)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'scale(1)';
+        }}
+      >
+        {name}
+      </div>
+    );
+  };
+
+  const containerStyles = {
+    backgroundColor: '#fff',
+    padding: '8px',
+    display: 'flex',
+    flexWrap: 'wrap', 
+    justifyContent: 'center'
+  };
+
+  const brandRows = [];
+  for (let i = 0; i < brands.length; i += 4) {
+    brandRows.push(
+      <div key={i} style={{ display: 'flex' }}>
+        {brands.slice(i, i + 4).map((brand, index) => (
+          <div key={index}>{renderBrands(brand)}</div>
+        ))}
+      </div>
+    );
+  }
+
+    
+  
   const submit = async (event) => {
     event.preventDefault();
     if (isMobileValid) {
@@ -35,8 +134,8 @@ export default function Login({setData}) {
           password,
           mobile,
           gender,
-          role,
           age,
+          selectedBrands,
         },
         { timeout: 3000 }
         );
@@ -69,9 +168,9 @@ export default function Login({setData}) {
       }
     
       const handleLogin = async () => {
-        // Fetch data from backend
+        
         const data = await fetchDataFromBackend();
-        // Update data in parent component
+        
         setData(data);
       };
       
@@ -81,8 +180,12 @@ export default function Login({setData}) {
 
       const submit1 = async (event) => {
         event.preventDefault();
+        setShowSpinner(true);
+          setTimeout(() => {
+            setShowSpinner(false);
       
-        // Send HTTP request to check if user is present
+          }, 5000);
+        
         fetch('http://localhost:8000/login', {
           method: 'POST',
           headers: {
@@ -95,7 +198,10 @@ export default function Login({setData}) {
             if (data.success) {
               // Store user data in parent component
               setData(data.user);
-              history('/home', { state: { id: data.user.email, name: data.user.name,mobile:data.user.mobile,gender:data.user.gender,role:data.user.role,age:data.user.age} })
+              history('/home', { state: { id: data.user.email, name: data.user.name,mobile:data.user.mobile,gender:data.user.gender,age:data.user.age,password:data.user.password,
+                title:data.user.title,
+                selectedBrands:data.user.selectedBrands,
+              } })
 
               // Display success toast
               toast.success('Logged in successfully!', { autoClose: 3000 });
@@ -126,6 +232,16 @@ export default function Login({setData}) {
     //       localStorage.removeItem("showToast");
     //     }
     //   }, []);
+    const [showlogo, setShowlogo] = useState(true);
+
+    useEffect(() => {
+      setShowlogo(true);
+      setTimeout(() => {
+        setShowlogo(false);
+        setShow(true);
+      }, 2500); 
+    }, []);
+    
 
     return(
       <>
@@ -154,7 +270,7 @@ export default function Login({setData}) {
 </div>
       </div> */}
 
-     <div className='image_slideshow' style={{position:'absolute',right:'0px',filter: 'saturate(200%)',top:'0px', width:'600px'}}>
+     {/* <div className='image_slideshow' style={{position:'absolute',right:'0px',filter: 'saturate(200%)',top:'0px', width:'600px'}}>
   
      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel"   data-bs-interval="2500"
 >
@@ -183,10 +299,67 @@ export default function Login({setData}) {
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-</div>
+</div> */}
 
-<div className='login_page'>
-<Components.Container>
+{showlogo  &&<div className='front_page'>
+<div className='rotate_logo1'>
+  <img src={logo} alt='image_logo1'/>
+</div>
+<div>
+    <div className="logo-wrap1">
+    <svg
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      x="0px"
+      y="0px"
+      viewBox="0 -60 1000 450"
+      style={{ enableBackground: 'new 0 0 855 150' }}
+      xmlSpace="preserve"
+    >
+      <style type="text/css">
+        
+      </style>
+      <text transform="matrix(1 0 0 1 0 125.5508)" className="st10 st11 st12">
+        NEWSILE
+      </text>
+    </svg>
+  </div>
+  </div>
+
+</div>
+}
+
+
+{/* <div className='rotate_logo'>
+  <img src={logo} alt='image_logo'/>
+</div>
+<div>
+    <div className='logo_box'>
+    <div className="logo-wrap">
+    <svg
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      x="0px"
+      y="0px"
+      viewBox="0 -60 1000 450"
+      style={{ enableBackground: 'new 0 0 855 150' }}
+      xmlSpace="preserve"
+    >
+      <style type="text/css">
+        
+      </style>
+      <text transform="matrix(1 0 0 1 0 125.5508)" className="st0 st1 st2">
+        NEWSILE
+      </text>
+    </svg>
+  </div>
+  </div>
+    </div> */}
+<div className={`login_page`}>
+
+<Components.Container className={`${show ? 'final show':'final'}`}>
           
           <ToastContainer />
           <Components.SignUpContainer signinIn={signIn}>
@@ -236,17 +409,47 @@ export default function Login({setData}) {
         </Components.Select>
 
 
-        <Components.Input type='text' placeholder='Role' onChange={(e)=>{setRole(e.target.value)}}/>
+       
 
         <Components.Input type="number" placeholder='Age' onChange={(e)=>{
           setAge(e.target.value)
         }}/>
+
+
+
         
-        <Components.Button onClick={submit} value="Submit" >Sign Up</Components.Button>
+        <Components.Button onClick={()=>{
+          setStep(3)
+        }} >next</Components.Button>
         <Stack direction="row" alignItems="center" spacing={1}>
       <IconButton aria-label="delete" size="large">
         <ArrowBackIcon onClick={()=>
           setStep(1)
+        }/>
+      </IconButton>
+    </Stack>
+      </div>
+    )}
+
+
+
+{step === 3 && (
+
+      <div>
+        <h4>Pick your favourite</h4>
+        <div style={containerStyles}>
+      {brands.map((brand, index) => (
+        <div key={index}>{renderBrands(brand)}</div>
+      ))}
+    </div>
+    <br></br>
+    <br></br>
+
+        <Components.Button onClick={submit} value="Submit" >Sign Up</Components.Button>
+        <Stack direction="row" alignItems="center" spacing={1}>
+      <IconButton aria-label="delete" size="large">
+        <ArrowBackIcon onClick={()=>
+          setStep(2)
         }/>
       </IconButton>
     </Stack>
@@ -270,7 +473,7 @@ export default function Login({setData}) {
               <Components.Overlay signinIn={signIn}>
 
               <Components.LeftOverlayPanel signinIn={signIn}>
-                  <Components.Title>Welcome Back!</Components.Title>
+                  <Components.Title>Welcome!</Components.Title>
                   <Components.Paragraph>
                       To keep connected with us please login with your personal info
                   </Components.Paragraph>
@@ -293,7 +496,30 @@ export default function Login({setData}) {
           </Components.OverlayContainer>
 
       </Components.Container>
-      </div>
+     
+      {showSpinner && (
+  <div
+  style={{
+    position: "fixed",
+    top: "50%",
+    left: "50%",
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgb(3,3,44)",
+    display: "flex",
+    zIndex: 9999,
+    transform: "translate(-50%, -50%)"
+  }}
+  >
+    <div>
+      <div className="spinner-border" role="status"></div>
+      <div id="loading">Loading...</div>
+    </div>
+  </div>
+)}
+        </div>
     </>
         
         // <form action='POST'>

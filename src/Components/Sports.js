@@ -10,6 +10,7 @@ import 'bootstrap';
 import "bootstrap/js/src/collapse.js";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import { json } from 'react-router-dom';
+import Navbar1 from './Navbar';
 function Sports() {
     const [articles,setArticles] = useState([]);
     const [input,setInput] = useState("")
@@ -58,101 +59,17 @@ function Sports() {
     
       console.log(p)
       setValue(p)
-    
-    
         };
         fetchData();
-        
       }, []);
     }
     News()
       
-    return  <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-      <div className='card1'><Navbar expanded={expanded}  expand="lg">
-      <Container fluid id='expenses'>
-        
-        <Navbar.Toggle
-          aria-controls="navbarScroll"
-          onClick={() => setExpanded(expanded ? false : "expanded")}
-        />
-        <Navbar.Collapse id="navbarScroll">
-          <Nav className="me-auto my-2 my-lg-0 brand" navbarScroll>
-            <Link id='color'
-              to="/home"
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            >
-              <span className="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Home</span>
-            </Link>
-            <Link to="/business"id="color"
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            >
-              <span className="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Business</span>
-            </Link>
-            
-
-            <Link id="color"
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            ><span className="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Sports</span>
-              
-            </Link>
-            <Link
-              to="/technology" id='color'
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            >
-              <span className="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Tech</span>
-            </Link>
-            <Link
-              to="/health" id='color'
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            >
-              <span className="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Health</span>
-            </Link>
-            <Link
-              to="/science" id='color'
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            >
-              <span className="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Scinece</span>
-            </Link>
-            <Link
-              to="/articles" id='color'
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            >
-              <span className="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Articles</span>
-            </Link>
-            <Link
-              to="/tesla" id='color'
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            >
-              <span className="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Tesla</span> 
-            </Link>
-            <Link
-              to="/apple"
-              className="nav-link" id='color'
-              onClick={() => setExpanded(false)}
-            >
-              <span className="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Apple</span>
-            </Link>
-            <Link
-              to="/usBusiness"
-              className="nav-link" id='color'
-              onClick={() => setExpanded(false)}
-            >
-              <span className="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">US</span>
-            </Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-</div>
+    return<> 
+    <Navbar1 /> <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
+  
 <h1 id="h1">Sports News in India</h1> {value}</div>
+</>
 
     
   

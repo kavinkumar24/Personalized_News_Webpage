@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import Axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.css';
-
+import Navbar1 from './Navbar';
 import 'bootstrap';
 import "bootstrap/js/src/collapse.js";
 import { Container, Navbar, Nav } from "react-bootstrap";
@@ -67,91 +67,12 @@ function Tech() {
     }
     News()
       
-    return  <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-      <div className='card1'><Navbar expanded={expanded}  expand="lg">
-      <Container fluid id='expenses'>
-        
-        <Navbar.Toggle
-          aria-controls="navbarScroll"
-          onClick={() => setExpanded(expanded ? false : "expanded")}
-        />
-        <Navbar.Collapse id="navbarScroll">
-          <Nav className="me-auto my-2 my-lg-0 brand" navbarScroll>
-            <Link id='color'
-              to="/home"
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            >
-              Home
-            </Link>
-            <Link to="/business"id="color"
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            >
-              Business
-            </Link>
-            
-
-            <Link to='/sports' id="color"
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            >
-              Sports
-            </Link>
-            <Link id='color'
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            >
-              Technology
-            </Link>
-            <Link
-              to="/health" id='color'
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            >
-              Health
-            </Link>
-            <Link
-              to="/science" id='color'
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            >
-              Science
-            </Link>
-            <Link
-              to="/articles" id='color'
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            >
-              Articles
-            </Link>
-            <Link
-              to="/tesla" id='color'
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            >
-              Tesla 
-            </Link>
-            <Link
-              to="/apple"
-              className="nav-link" id='color'
-              onClick={() => setExpanded(false)}
-            >
-              Apple
-            </Link>
-            <Link
-              to="/usBusiness"
-              className="nav-link" id='color'
-              onClick={() => setExpanded(false)}
-            >
-              US Business
-            </Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-</div>
+    return <> 
+    <Navbar />
+     <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
+      
 <h1 id="h1">Technolgy News</h1> {value}</div>
+</>
 
     
   

@@ -5,19 +5,21 @@ import { Link } from "react-router-dom";
 import { Newspaper } from 'react-bootstrap-icons';
 import Axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.css';
-
+import Navbar1 from './Navbar';
 import 'bootstrap';
 import "bootstrap/js/src/collapse.js";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import { json } from 'react-router-dom';
 import { Button } from 'bootstrap';
-function Business() {
+import { useLocation } from 'react-router-dom';
+function Business({data}) {
     const [articles,setArticles] = useState([]);
     const [input,setInput] = useState("")
     const [search,setSearch] = useState("")
     const [expanded, setExpanded] = useState(false);
     const[value,setValue]=useState("")
-
+    const location=useLocation()
+   
     async function News() {
       useEffect(() => {
         const fetchData = async () => {
@@ -66,95 +68,33 @@ function Business() {
       }, []);
     }
     News()
-      
-    return  <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-      <div className='card1'><Navbar expanded={expanded}  expand="lg" id='navbar'>
-      <Container fluid id='expenses'>
-        
-        <Navbar.Toggle
-          aria-controls="navbarScroll"
-          onClick={() => setExpanded(expanded ? false : "expanded")}
+    const username = location.state ? location.state.id : "";
+    const name = location.state ? location.state.name : "";
+    const mobile = location.state ? location.state.mobile : "";
+    const gender = location.state ? location.state.gender : "";
+    const role = location.state ? location.state.role : "";
+    const age = location.state ? location.state.age : "";
+    if (location.state) {
+      return (
+        <Navbar1
+          username={location.state.id}
+          name={location.state.name}
+          mobile={location.state.mobile}
+          gender={location.state.gender}
+          role={location.state.role}
+          age={location.state.age}
         />
-        <Navbar.Collapse id="navbarScroll">
-          <Nav className="me-auto my-2 my-lg-0 brand" navbarScroll>
-            <Link id='color'
-              to="/home"
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            >
-              <span className="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Home</span>
-            </Link>
-            <Link id="color"
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            >
-              <span className="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Business</span>
-            </Link>
-            
+      );
+    } else {
+        
+    }
+    return <> <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
+    
+<h1 id="h1">Business News in India</h1>
+{/* <Link to="/business/newspaper1"><button><Newspaper id='newspaper_icon1'/></button></Link> */}
 
-            <Link
-              to="/sports" id="color"
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            >
-              <span className="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Sports</span>
-            </Link>
-            <Link
-              to="/technology" id='color'
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            >
-              <span className="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Tech</span>
-            </Link>
-            <Link
-              to="/health" id='color'
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            >
-              <span className="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Health</span>
-            </Link>
-            <Link
-              to="/science" id='color'
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            >
-              <span className="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Science</span>
-            </Link>
-            <Link
-              to="/articles" id='color'
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            >
-              <span className="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Articles</span>
-            </Link>
-            <Link
-              to="/tesla" id='color'
-              className="nav-link"
-              onClick={() => setExpanded(false)}
-            >
-              <span className="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Tesla</span> 
-            </Link>
-            <Link
-              to="/apple"
-              className="nav-link" id='color'
-              onClick={() => setExpanded(false)}
-            >
-              <span className="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Apple</span>
-            </Link>
-            <Link
-              to="/usBusiness"
-              className="nav-link" id='color'
-              onClick={() => setExpanded(false)}
-            >
-              <span className="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">US</span>
-            </Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-    <Link to="/business/newspaper1"><button><Newspaper className='newspaper_icon1'/></button></Link>
-</div><h1 id="h1">Business News in India</h1>
 {value}</div>
+</>
   
   
 }
