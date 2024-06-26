@@ -1,3 +1,8 @@
+
+# PERSONALIZED NEWS WEBSITE
+
+      The News website built using React includes various components and features to provide an engaging and personalized user experience. The app allows users to register and authenticate, customize their profiles, and access a newsfeed that displays articles in a chronological order. Filtering and sorting options enable users to narrow down the news based on categories and arrange them by popularity or relevance. 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
