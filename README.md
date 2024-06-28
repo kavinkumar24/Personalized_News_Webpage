@@ -1,7 +1,8 @@
 
 # PERSONALIZED NEWS WEBSITE
 
-The News website built using React includes various components and features to provide an engaging and personalized user experience. The app allows users to register and authenticate, customize their profiles, and access a newsfeed that displays articles in a chronological order. Filtering and sorting options enable users to narrow down the news based on categories and arrange them by popularity or relevance.
+The News website built using React which is a two-tier applicstion which includes various components and features to provide an engaging and personalized user experience. The app allows users to register and authenticate, customize their profiles, and access a newsfeed that displays articles in a chronological order. Filtering and sorting options enable users to narrow down the news based on categories and arrange them by popularity or relevance.
+and there are some additional extensions to enage with user like News summarizer which is working based on Natural Language processing and Instant QR code Generator
 
 # working prototype of the model
 ## Loading Page
@@ -12,6 +13,17 @@ The News website built using React includes various components and features to p
 
 ## Landing page
 ![Personalized_News_webpage](public/Page3.png)
+
+## News display card
+![Personalized_News_webpage](public/page4.png)
+
+## User Profile
+![Personalized_News_webpage](public/page5.png)
+
+## Summarizer extension
+![Personalized_News_webpage](public/page6.png)
+
+
 
 # Getting Started with Create React App
 
